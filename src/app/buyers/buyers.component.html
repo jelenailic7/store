@@ -1,0 +1,30 @@
+
+List of buyers:<br>
+  <input type="text" name="firstName" [(ngModel)]="newBuyer.firstName"><br>
+  <input type="text" name="lastName" [(ngModel)]="newBuyer.lastName"><br>
+  <input type="text" name="email" [(ngModel)]="newBuyer.email"><br>
+
+  <button (click)="addBuyer()" class="btn btn-success">Add new buyer</button>
+
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let buyer of buyers">
+      <a>
+      <td>{{ buyer.firstName }}</td>
+      </a>
+      <td>{{ buyer.lastName }}</td>
+      <td><button (click) = "removeBuyer(buyer)" class="btn btn-danger">Remove buyer </button>
+      </td>   
+    </tr>
+    </tbody>
+</table>
