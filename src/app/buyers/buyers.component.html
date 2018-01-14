@@ -1,12 +1,5 @@
 
 List of buyers:<br>
-  <input type="text" name="firstName" [(ngModel)]="newBuyer.firstName"><br>
-  <input type="text" name="lastName" [(ngModel)]="newBuyer.lastName"><br>
-  <input type="text" name="email" [(ngModel)]="newBuyer.email"><br>
-
-  <button (click)="addBuyer()" class="btn btn-success">Add new buyer</button>
-
-
 
 
 <table class="table">
@@ -23,8 +16,21 @@ List of buyers:<br>
       <td>{{ buyer.firstName }}</td>
       </a>
       <td>{{ buyer.lastName }}</td>
-      <td><button (click) = "removeBuyer(buyer)" class="btn btn-danger">Remove buyer </button>
-      </td>   
+      <td>{{ buyer.email }}</td>
+
+      <td><button class="btn" [routerLink]="['/buyers', buyer.id]">Check latest purchases</button></td>
+
+      <td><button (click) = "removeBuyer(buyer)" class="btn btn-danger">Remove buyer </button></td>   
     </tr>
     </tbody>
 </table>
+<br>
+
+<input type="text" name="firstName" [(ngModel)]="newBuyer.firstName"><br>
+<input type="text" name="lastName" [(ngModel)]="newBuyer.lastName"><br>
+<input type="text" name="email" [(ngModel)]="newBuyer.email"><br>
+
+<button (click)="addBuyer()" class="btn btn-success">Add new buyer</button>
+
+<router-outlet></router-outlet>
+

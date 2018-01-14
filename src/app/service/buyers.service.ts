@@ -1,26 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Buyer } from '../models/buyer';
 import { Product } from '../models/product';
+import { Router } from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+
+
 
 @Injectable()
 export class BuyersService {
 
 
-private buyers: Buyer [];
-products: Product[];
-product = {};
+products:  Array<Product>[];
+private buyers: Buyer = [
+
+  {id:1,firstName:'Jelena',lastName:'Ilic',email:'jelena@example.com',products: [{ name : 'Milk' },{ name : 'Sugar' }]},
+  {id:2,firstName:'Tamara',lastName:'Nikolic',email:'tamara@example.com',products: [{ name : 'Milk' },{ name : 'Sugar' }]},
+  {id:3,firstName:'Martina',lastName:'Ilic',email:'martina@example.com',products: [{ name : 'Milk' },{ name : 'Sugar' }]}
+];
 
 
 
-  constructor() {  
 
-  
-    this.buyers = [
-      new Buyer (1,'Jelena','Ilic','jelena@example.com',new Product (1,'Milk',2)),
-      new Buyer (2,'Tamara','Nikolic','tamara@example.com',new Product (1,'Milk',2)),
-      new Buyer (3,'Martina','Ilic','martina@example.com',new Product (1,'Milk',2))
-    ];
-   }
+
+  constructor() {}
 
 
   public getBuyers()
@@ -37,4 +39,8 @@ product = {};
     this.buyers.push(newBuyer);
     return this.buyers;
   }
+  getBuyer(id: number){
+  return this.getBuyers().find(buyer => buyer.id == id);
+  }
+
 }

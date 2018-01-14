@@ -1,0 +1,11 @@
+<div>
+<p>{{ buyer.firstName }}</p> 
+<p>{{ buyer.lastName }}</p>
+<p>{{ buyer.email }}</p>
+<br>
+<h6>Products: </h6>
+  	<p *ngFor = "let products of buyer.products">
+      {{products.name}}
+    </p>
+</div>
+<router-outlet></router-outlet>

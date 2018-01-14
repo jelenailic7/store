@@ -12,11 +12,14 @@ import { LayoutComponent } from './layout/layout.component';
 import { ProductsComponent } from './products/products.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BuyersService } from './service/buyers.service';
+import { BuyerDetailsComponent } from './buyer-details/buyer-details.component';
 
 const appRoutes: Routes = [
-  {path:'buyers',component: BuyersComponent },
-  {path:'products',component: ProductsComponent },
-
+  { path:'buyers',component: BuyersComponent, 
+     children: [
+      { path: ':id', component: BuyerDetailsComponent }
+     ]},
+  { path:'products',component: ProductsComponent }
 ];
 
 
@@ -26,13 +29,15 @@ const appRoutes: Routes = [
     BuyersComponent,
     LayoutComponent,
     ProductsComponent,
-    NavbarComponent
+    NavbarComponent,
+    BuyerDetailsComponent
   ],
   imports: [
-    RouterModule.forRoot(appRoutes),
     BrowserModule,
+    RouterModule.forRoot(appRoutes),
     FormsModule
   ],
+
   providers: [BuyersService],
   bootstrap: [AppComponent]
 })
