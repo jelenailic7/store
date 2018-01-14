@@ -13,6 +13,7 @@ import { ProductsComponent } from './products/products.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BuyersService } from './service/buyers.service';
 import { BuyerDetailsComponent } from './buyer-details/buyer-details.component';
+import { ProductsService } from './service/products.service';
 
 const appRoutes: Routes = [
   { path:'buyers',component: BuyersComponent, 
@@ -38,7 +39,7 @@ const appRoutes: Routes = [
     FormsModule
   ],
 
-  providers: [BuyersService],
+  providers: [BuyersService,ProductsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

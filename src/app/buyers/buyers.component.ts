@@ -12,7 +12,7 @@ import {Observable} from 'rxjs/Observable';
 export class BuyersComponent implements OnInit {
 
 
- buyers;
+buyers;
  newBuyer = {};
 
 

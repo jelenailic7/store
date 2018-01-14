@@ -1,4 +1,17 @@
-<p>
-  products works!
-</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Name of product: </th>
+        <th> Number in stock: </th>
+      </tr>
+    </thead>
+    <tbody *ngFor = "let product of products">
+      <tr> 
+        <th>{{ product.name }}</th>
+        <th>{{ product.numberInStock }}</th>
+      </tr>
+    </tbody>
+  </table>
+  
+  
 <router-outlet></router-outlet>
