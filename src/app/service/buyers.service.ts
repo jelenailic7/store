@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class BuyersService {
-
+id;
 private buyers: Buyer[] = [
 
   {id:1,firstName:'Jelena',lastName:'Ilic',email:'jelena@example.com',products: [{ name : 'Milk' },{ name : 'Sugar' }]},
@@ -37,7 +37,7 @@ private buyers: Buyer[] = [
     return this.buyers;
   }
   getBuyer(id: number){
-  return this.getBuyers().find(buyer => buyer.id == id);
+  return this.getBuyers().find(buyer => buyer['id'] == id);
   }
 
 }

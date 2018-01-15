@@ -12,6 +12,8 @@ Search product:
       <tr> 
         <th>{{ product.name }}</th>
         <th>{{ product.numberInStock }}</th>
+        <th> <button class="btn" (click)="incrementProduct(product)"> + </button></th>
+        <th> <button class="btn" (click)="decrementProduct(product)"> - </button></th>
       </tr>
     </tbody>
   </table>

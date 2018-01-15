@@ -12,9 +12,18 @@ import { FilterPipe } from '../pipes/filter.pipe';
 export class ProductsComponent implements OnInit {
 products: Array<Product>;
 searchTerm: string='';
+product ={};
 
   constructor(private productsService: ProductsService) { 
   this.products = this.productsService.getProducts();
+}
+incrementProduct(product)
+{
+  this.productsService.addToStock(this.product);
+}
+decrementProduct(product)
+{
+  this.productsService.takeFromStock(this.product);
 }
   ngOnInit() {
   }
