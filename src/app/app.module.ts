@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { BuyersService } from './service/buyers.service';
 import { BuyerDetailsComponent } from './buyers/buyer-details/buyer-details.component';
 import { ProductsService } from './service/products.service';
+import { FilterPipe } from './pipes/filter.pipe';
 
 const appRoutes: Routes = [
   { path:'buyers', component: BuyersComponent, 
@@ -31,15 +32,17 @@ const appRoutes: Routes = [
     LayoutComponent,
     BuyersComponent,
     ProductsComponent,
-    BuyerDetailsComponent
+    BuyerDetailsComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     FormsModule
+
   ],
 
-  providers: [BuyersService,ProductsService],
+  providers: [BuyersService, ProductsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

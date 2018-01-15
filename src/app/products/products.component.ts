@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../service/products.service';
 import { Product } from '../models/product';
+import { FilterPipe } from '../pipes/filter.pipe';
+
 
 @Component({
   selector: 'app-products',
@@ -9,6 +11,7 @@ import { Product } from '../models/product';
 })
 export class ProductsComponent implements OnInit {
 products: Array<Product>;
+searchTerm: string='';
 
   constructor(private productsService: ProductsService) { 
   this.products = this.productsService.getProducts();
