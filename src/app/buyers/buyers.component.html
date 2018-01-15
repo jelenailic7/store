@@ -18,7 +18,7 @@ List of buyers:<br>
       <td>{{ buyer.lastName }}</td>
       <td>{{ buyer.email }}</td>
 
-      <td><button class="btn" [routerLink]="['/buyers', buyer.id]">Check latest purchases</button></td>
+      <td><button class="btn"  [routerLink]="['/buyers', buyer.id]" >Check latest purchases</button></td>
 
       <td><button (click) = "removeBuyer(buyer)" class="btn btn-danger">Remove buyer </button></td>   
     </tr>

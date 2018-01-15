@@ -12,11 +12,11 @@ import { LayoutComponent } from './layout/layout.component';
 import { ProductsComponent } from './products/products.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BuyersService } from './service/buyers.service';
-import { BuyerDetailsComponent } from './buyer-details/buyer-details.component';
+import { BuyerDetailsComponent } from './buyers/buyer-details/buyer-details.component';
 import { ProductsService } from './service/products.service';
 
 const appRoutes: Routes = [
-  { path:'buyers',component: BuyersComponent, 
+  { path:'buyers', component: BuyersComponent, 
      children: [
       { path: ':id', component: BuyerDetailsComponent }
      ]},
@@ -27,10 +27,10 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    BuyersComponent,
-    LayoutComponent,
-    ProductsComponent,
     NavbarComponent,
+    LayoutComponent,
+    BuyersComponent,
+    ProductsComponent,
     BuyerDetailsComponent
   ],
   imports: [

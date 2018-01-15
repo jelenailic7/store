@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BuyersService } from '../service/buyers.service';
 import { Buyer } from '../models/buyer';
-import {Observable} from 'rxjs/Observable';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 
 
 @Component({
@@ -12,14 +13,15 @@ import {Observable} from 'rxjs/Observable';
 export class BuyersComponent implements OnInit {
 
 
-buyers;
- newBuyer = {};
+buyers: Array<Buyer>;
+newBuyer = {};
 
 
   constructor(private buyersService: BuyersService) { 
     this.buyers = this.buyersService.getBuyers();
   }
-  
+
+
 public removeBuyer(buyer)
 {
     let index = this.buyers.indexOf(buyer);

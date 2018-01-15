@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { BuyersService } from '../service/buyers.service';
-import { Buyer } from '../models/buyer';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { BuyersService } from '../../service/buyers.service';
+import { Buyer } from '../../models/buyer';
 
 
 
@@ -18,8 +18,10 @@ buyer: Buyer;
 constructor(private buyersService: BuyersService, private route: ActivatedRoute) {}
 
   ngOnInit()  {
-    let id = +this.route.snapshot.paramMap.get('id');
+    let id = +this.route.snapshot.paramMap.get('id'); //activated route in action / angular docs
+
     this.buyer = this.buyersService.getBuyer(id);
+
 }
 
 }

@@ -2,16 +2,13 @@ import { Injectable } from '@angular/core';
 import { Buyer } from '../models/buyer';
 import { Product } from '../models/product';
 import { Router } from '@angular/router';
-import {Observable} from 'rxjs/Observable';
 
 
 
 @Injectable()
 export class BuyersService {
 
-
-products:  Array<Product>[];
-private buyers: Buyer = [
+private buyers: Buyer[] = [
 
   {id:1,firstName:'Jelena',lastName:'Ilic',email:'jelena@example.com',products: [{ name : 'Milk' },{ name : 'Sugar' }]},
   {id:2,firstName:'Tamara',lastName:'Nikolic',email:'tamara@example.com',products: [{ name : 'Milk' },{ name : 'Sugar' }]},
