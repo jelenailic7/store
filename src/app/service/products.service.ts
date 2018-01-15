@@ -12,20 +12,24 @@ private products: Product[] = [
 ];
 
 
- constructor() { }
+constructor() { }
 
 public getProducts()
 {
   return this.products;
 }
-public getProduct(product)
+public getProduct(product:Product)
 {
   return this.getProducts().find(product => product['id'] == product.id);
 }
 
 public getProductbyId(id:number)
 {
-  return this.getProducts().find(product => product['id'] == id);
+  for(let i = 0; i < this.products.length; i++){
+    if(this.products[i].id == id){
+      return this.products[i];
+      }
+    }
 }
 
 

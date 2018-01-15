@@ -16,13 +16,13 @@ export class Buyer {
 //     this.products = products;
 //   }
 constructor(
-id:number,
-firstName:string,
-lastName:string,
-email:string,
-products:Product[]
+id?:number,
+firstName?:string,
+lastName?:string,
+email?:string,
+products?:Product[]
 ){}
 }
 
 
-//typescript and json NESTO
+//EventEmiter binding 

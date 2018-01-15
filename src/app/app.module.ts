@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -15,13 +15,17 @@ import { BuyersService } from './service/buyers.service';
 import { BuyerDetailsComponent } from './buyers/buyer-details/buyer-details.component';
 import { ProductsService } from './service/products.service';
 import { FilterPipe } from './pipes/filter.pipe';
+import { ProductDetailsComponent } from './products/product-details/product-details.component';
 
 const appRoutes: Routes = [
   { path:'buyers', component: BuyersComponent, 
      children: [
       { path: ':id', component: BuyerDetailsComponent }
      ]},
-  { path:'products',component: ProductsComponent }
+  { path:'products',component: ProductsComponent,
+  children: [
+    { path: ':id', component: ProductDetailsComponent }
+   ]} 
 ];
 
 
@@ -33,12 +37,16 @@ const appRoutes: Routes = [
     BuyersComponent,
     ProductsComponent,
     BuyerDetailsComponent,
-    FilterPipe
+    FilterPipe,
+    ProductDetailsComponent,
+
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
+    HttpClientModule
+
 
   ],
 

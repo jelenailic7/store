@@ -10,22 +10,29 @@ import { FilterPipe } from '../pipes/filter.pipe';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+
 products: Array<Product>;
 searchTerm: string='';
 product ={};
 
-  constructor(private productsService: ProductsService) { 
-  this.products = this.productsService.getProducts();
-}
-incrementProduct(product)
+  constructor(private productsService: ProductsService) {
+    this.products = this.productsService.getProducts();
+
+
+  }
+
+public incrementProduct(product)
 {
   this.productsService.addToStock(this.product);
 }
-decrementProduct(product)
+public decrementProduct(product)
 {
   this.productsService.takeFromStock(this.product);
 }
   ngOnInit() {
+    this.products = this.productsService.getProducts();
+
+
   }
 
 

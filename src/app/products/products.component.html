@@ -10,10 +10,12 @@ Search product:
     </thead>
     <tbody *ngFor = "let product of products | filter:searchTerm">
       <tr> 
-        <th>{{ product.name }}</th>
-        <th>{{ product.numberInStock }}</th>
-        <th> <button class="btn" (click)="incrementProduct(product)"> + </button></th>
-        <th> <button class="btn" (click)="decrementProduct(product)"> - </button></th>
+        <td>{{ product.name }}</td>
+        <td>{{ product.numberInStock }}</td>
+        <td> <button class="btn" (click)="incrementProduct(product)"> + </button></td>
+        <td> <button class="btn" (click)="decrementProduct(product)"> - </button></td>
+        <td> <button class="btn" [routerLink] ="['/products', product?.id ]"> Sell </button></td>
+
       </tr>
     </tbody>
   </table>
