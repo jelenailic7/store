@@ -16,20 +16,20 @@ export class BuyersComponent implements OnInit {
 
 
 buyers: Array<Buyer>;
-newBuyer = {};
+
+newBuyer: Buyer = new Buyer();
 
 
   constructor(private buyersService: BuyersService) { 
+  
     this.buyersService.getBuyers().subscribe(data =>{
       this.buyers = data; 
     },
     (err: HttpErrorResponse) => {
       if (err.error instanceof Error) {
-    // A client-side or network error occurred. Handle it accordingly.
     console.log('An error occurred:', err.error.message);
   } else {
-    // The backend returned an unsuccessful response code.
-    // The response body may contain clues as to what went wrong,
+    
      console.log('Backend returned code ${err.status}, body was: ${err.error}');
          }
     }
@@ -38,16 +38,24 @@ newBuyer = {};
 
 public removeBuyer(buyer)
 {
-    let index = this.buyers.indexOf(buyer);
-    this.buyers.splice(index,1); 
+    this.buyersService.removeBuyer(buyer);
 }
-public addBuyer()
+public addBuyer(newBuyer)
 {
-  this.buyersService.addBuyer(this.newBuyer);
-} 
+  this.buyersService.addBuyer(this.newBuyer).subscribe(
+    newBuyer => {this.buyers.push(newBuyer);
+  },
+  (err: HttpErrorResponse)=>{
+    alert(`Backend returned code ${err.status} with message: ${err.error}`);
+  });
+  this.newBuyer = new Buyer();
+}
+
 
 
   ngOnInit() {
   }
+   
+  
 
 }

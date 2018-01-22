@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap, Params } from '@angular/router';
 import { BuyersService } from '../../service/buyers.service';
 import { Buyer } from '../../models/buyer';
 
@@ -12,16 +12,18 @@ import { Buyer } from '../../models/buyer';
 })
 export class BuyerDetailsComponent implements OnInit {
 
-buyer: Buyer;
-
+buyer:Buyer;
 
 constructor(private buyersService: BuyersService, private route: ActivatedRoute) {}
 
   ngOnInit()  {
-    let id = +this.route.snapshot.paramMap.get('id'); //activated route in action / angular docs
-
-    this.buyer = this.buyersService.getBuyer(id);
-
-}
-
-}
+    this.route.params.subscribe((params:Params)=> {
+    this.buyer = this.buyersService.getBuyerById(+params['id']); // moze da prebacuje link sa linka ne mora nazad pa opet na link
+  });
+    
+     
+//    let id = + this.route.snapshot.paramMap.get('id');
+//   this.buyer = this.buyersService.getBuyerById(id);
+ 
+    }
+  }

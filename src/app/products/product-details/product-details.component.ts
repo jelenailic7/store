@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router/';
+import { ActivatedRoute, Params } from '@angular/router/';
 import { ProductsService } from '../../service/products.service';
-import { Product } from'../../models/product';
+import { BuyersService } from '../../service/buyers.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-product-details',
@@ -9,14 +11,31 @@ import { Product } from'../../models/product';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-product:Product;
 
-  constructor(private productService:ProductsService, private route: ActivatedRoute) { }
+product: any = {};
+buyers: any[] = [];
+selectBuyerId: number;
+
+
+  constructor(private productsService:ProductsService, private route: ActivatedRoute, private buyersService: BuyersService, private router: Router) { }
 
   ngOnInit() {
-    let id = +this.route.snapshot.paramMap.get('id'); //activated route in action / angular docs
+    this.route.params.subscribe((params:Params)=> {
+    this.product = this.productsService.getProductbyId(+params['id']);
+  });
+    this.buyersService.getBuyers().subscribe(data =>{
+    this.buyers = data; 
+    });
+}
 
-    this.product = this.productService.getProductbyId(id);
+public buyerPurchase(product) {
+  if(this.selectBuyerId){
+    this.buyersService.buyerPurchase(product, this.selectBuyerId);
+    this.router.navigate(['/products']);
+  } else {
+    alert('You need to select a customer');
   }
+}
 
 }
+

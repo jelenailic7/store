@@ -1,9 +1,8 @@
 export class Product {
-    id:number;
-    name:string;
-    numberInStock:number;
+   
     
-    constructor(id?:number, name?:string, numberInStock?:number) {
-     
-     }
+constructor (
+    public id?:number,
+    public name?:string,
+    public numberInStock?:number) {}
 }

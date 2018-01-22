@@ -18,19 +18,23 @@ List of buyers:<br>
       <td>{{ buyer.lastName }}</td>
       <td>{{ buyer.email }}</td>
 
-      <td><button class="btn"  [routerLink]="['/buyers', buyer.id]" >Check latest purchases</button></td>
+      <td><button type = "button" class="btn btn-primary"  [routerLink]="['/buyers', buyer.id]" >Check latest purchases</button></td>
 
-      <td><button (click) = "removeBuyer(buyer)" class="btn btn-danger">Remove buyer </button></td>   
+      <td><button type ="button" (click) = "removeBuyer(buyer)" class="btn btn-danger">Remove buyer </button></td>   
     </tr>
     </tbody>
 </table>
-<br>
 
-<input type="text" name="firstName" [(ngModel)]="newBuyer.firstName"><br>
-<input type="text" name="lastName" [(ngModel)]="newBuyer.lastName"><br>
-<input type="text" name="email" [(ngModel)]="newBuyer.email"><br>
-
-<button (click)="addBuyer()" class="btn btn-success">Add new buyer</button>
+<div class="form-group">
+  <form >
+      <label>First name</label>
+      <input type="text" name="firstName" [(ngModel)]="newBuyer.firstName" class="form-control"><br>
+      <label>Last name</label>
+      <input type="text" name="lastName" [(ngModel)]="newBuyer.lastName" class="form-control"><br>
+      <label>Email</label>
+      <input type="text" name="email" [(ngModel)]="newBuyer.email" class="form-control"><br>
+     <button (click)="addBuyer()" class="btn btn-success">Add new buyer</button>
+  </form>
+</div>
 
 <router-outlet></router-outlet>
-

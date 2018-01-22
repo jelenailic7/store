@@ -2,15 +2,19 @@ import { Injectable } from '@angular/core';
 import { Buyer } from '../models/buyer';
 import { Product } from '../models/product';
 import { Router } from '@angular/router';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/find';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ProductsService } from './products.service';
 
 
 
 @Injectable()
 export class BuyersService {
-id;
+
+private _buyersUrl = 'http://localhost:8000/buyers.php';
+private _buyersAddUrl = 'http://localhost:8000/buyers-add.php';
+newBuyerId: number;
+
+
 private buyers: Buyer[] = [
 
   {id:1,firstName:'Jelena',lastName:'Ilic',email:'jelena@example.com',products: [{ name : 'Milk' },{ name : 'Sugar' }]},
@@ -20,28 +24,41 @@ private buyers: Buyer[] = [
 
 
 
-
-
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private productService: ProductsService) {}
 
 
   public getBuyers()
   {
     //return this.buyers;
-    return this.httpClient.get<Buyer[]>('http://localhost:8000/buyers.php');
+    return this.httpClient.get<Buyer[]>(this._buyersUrl);
   }
-  removeBuyer(buyer)
+ public removeBuyer(buyer)
   {
-    let index = this.buyers.indexOf(buyer);
-    this.buyers.splice(index,1);
+    const index = this.buyers.indexOf(buyer);
+    this.buyers.splice(index, 1);
+     
   }
-  addBuyer(newBuyer)
+ public addBuyer(newBuyer)
   {
-    this.buyers.push(newBuyer);
-    return this.buyers;
+      this.newBuyerId = this.buyers.length +1;
+    return this.httpClient.post(this._buyersAddUrl,{
+      id: this.newBuyerId,
+      firstName: newBuyer.firstName,
+      lastName: newBuyer.lastName,
+      email: newBuyer.email
+});
+      this.newBuyerId = this.newBuyerId++;
+
   }
-  getBuyer(id: number){
-  return this.getBuyers().find(buyer => buyer['id'] == id);
+   public getBuyerById(id: number){
+  return this.buyers.find(buyer => buyer['id'] == id);
   }
+
+  public buyerPurchase(product, id){
+    let buyer = this.getBuyerById(id);
+    buyer.products.push(product);
+    this.productService.takeFromStock(product);
+  }
+
 
 }

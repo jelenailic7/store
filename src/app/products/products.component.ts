@@ -13,26 +13,24 @@ export class ProductsComponent implements OnInit {
 
 products: Array<Product>;
 searchTerm: string='';
-product ={};
+
 
   constructor(private productsService: ProductsService) {
     this.products = this.productsService.getProducts();
-
 
   }
 
 public incrementProduct(product)
 {
-  this.productsService.addToStock(this.product);
+  this.productsService.addToStock(product);
 }
+
 public decrementProduct(product)
 {
-  this.productsService.takeFromStock(this.product);
+  this.productsService.takeFromStock(product);
 }
+
   ngOnInit() {
-    this.products = this.productsService.getProducts();
-
-
   }
 
 

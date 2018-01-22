@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 
 
 
@@ -17,16 +18,6 @@ import { ProductsService } from './service/products.service';
 import { FilterPipe } from './pipes/filter.pipe';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 
-const appRoutes: Routes = [
-  { path:'buyers', component: BuyersComponent, 
-     children: [
-      { path: ':id', component: BuyerDetailsComponent }
-     ]},
-  { path:'products',component: ProductsComponent,
-  children: [
-    { path: ':id', component: ProductDetailsComponent }
-   ]} 
-];
 
 
 @NgModule({
@@ -43,7 +34,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
+    AppRoutingModule,   
     FormsModule,
     HttpClientModule
 

@@ -1,28 +1,15 @@
 import { Product } from "./product";
 
-
 export class Buyer {
-// id:number;
-// firstName:string;
-// lastName:string;
-// email:string;
-// products:Product[];
 
-//   constructor(id:number, firstName:string, lastName:string,email:string, products:Product[]) { 
-//     this.id = id;
-//     this.firstName = firstName;
-//     this.lastName = lastName;
-//     this.email = email;
-//     this.products = products;
-//   }
+
 constructor(
-id?:number,
-firstName?:string,
-lastName?:string,
-email?:string,
-products?:Product[]
+public id?:number,
+public firstName?:string,
+public lastName?:string,
+public email?:string,
+public products?:Product[]
 ){}
 }
 
 
-//EventEmiter binding 

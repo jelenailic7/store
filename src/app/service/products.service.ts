@@ -3,6 +3,7 @@ import { Product } from '../models/product';
 
 @Injectable()
 export class ProductsService {
+
 public numberInStock:number;
 
 private products: Product[] = [
@@ -18,12 +19,9 @@ public getProducts()
 {
   return this.products;
 }
-public getProduct(product:Product)
-{
-  return this.getProducts().find(product => product['id'] == product.id);
-}
 
-public getProductbyId(id:number)
+
+public getProductbyId(id)
 {
   for(let i = 0; i < this.products.length; i++){
     if(this.products[i].id == id){
@@ -33,20 +31,20 @@ public getProductbyId(id:number)
 }
 
 
-public addToStock(product)
+public addToStock(product:Product )
 {
- var oneProduct = this.getProduct(product);
- return oneProduct.numberInStock++;
+ var product = this.getProductbyId(product.id);
+ return product.numberInStock++;
 }
 
-public takeFromStock(product)
+public takeFromStock(product:Product)
 { 
-  if(this.getProduct(product).numberInStock <=0)
+  if(this.getProductbyId(product.id).numberInStock <=0)
   {
     return false;
   }
-  var oneProduct = this.getProduct(product).numberInStock--;
-  return oneProduct;
+  var product = this.getProductbyId(product.id);
+  return product.numberInStock--;
 }
 
 }

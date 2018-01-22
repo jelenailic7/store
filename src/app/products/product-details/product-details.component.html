@@ -1,4 +1,36 @@
-<div>
-    <p>{{ product.name }}</p> 
-    <p>{{ product.numberInStock }}</p>
-    <br>
+<div *ngIf="product.numberInStock >= 1">
+        <table class="table">
+          <thead>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Sell</th>
+            <th>Select Buyer</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ product.name }}</td>
+              <td>{{ product.numberInStock }}</td>
+              <td>
+                <button  
+                  type="button" (click)="buyerPurchase(product)" class="btn btn-success"> Confirm 
+                </button>
+                <button  
+                  type="button" routerLink="/products" class="btn btn-danger"> Cancel 
+                </button>
+              </td>
+              <td>
+                <select [(ngModel)]="selectBuyerId">
+                  <option  
+                    *ngFor="let buyer of buyers"
+                    [ngValue]="buyer.id">
+                    {{ buyer.firstName }}
+                  </option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <div *ngIf="product.numberInStock == 0">
+        <button class="btn btn-danger" routerLink="/products">Back to products</button>
+    </div>     
